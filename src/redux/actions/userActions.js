@@ -5,6 +5,7 @@ import {
   USER_LOGOUT,
   USER_REGISTER_FAIL,
   USER_REGISTER_REQUEST,
+  USER_REGISTER_RESET,
   USER_REGISTER_SUCCESS,
 } from "../constants/userConstants";
 import axios from "axios";
@@ -38,6 +39,7 @@ export const login = (username, password) => async (dispatch) => {
 export const logout = () => (dispatch) => {
   localStorage.removeItem("userInfo");
   dispatch({ type: USER_LOGOUT });
+  dispatch({ type: USER_REGISTER_RESET });
 };
 
 export const register = (username, password) => async (dispatch) => {
