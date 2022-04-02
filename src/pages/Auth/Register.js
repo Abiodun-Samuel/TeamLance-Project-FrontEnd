@@ -19,8 +19,7 @@ const Register = () => {
   const { loading, error, userInfo } = useSelector(
     (state) => state.userRegister
   );
-  console.log(userInfo);
-
+  
   useEffect(() => {
     if (userInfo) {
       navigate("/products");
