@@ -20,15 +20,14 @@ import {
 export const getProducts = () => async (dispatch, getState) => {
   try {
     dispatch({ type: PRODUCT_LIST_REQUEST });
-    // const {
-    //   userLogin: { userInfo },
-    // } = getState();
+    const {
+      userLogin: { userInfo },
+    } = getState();
 
     const config = {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDQ2ZWIzZGI3MzFjZTQ1NjhkYzEyOCIsInVzZXJuYW1lIjoidGVzdG1hbiIsImlhdCI6MTY0ODcyODA4NCwiZXhwIjoxNjUxMzIwMDg0fQ.Xff3QAHItU45dWT70xsWAvzj1X951F9C8FQ98RRuow0`,
-        //   Authorization: `Bearer ${userInfo.token}`,
+        Authorization: `Bearer ${userInfo.token}`,
       },
     };
 
@@ -52,15 +51,14 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
   try {
     dispatch({ type: PRODUCT_DELETE_REQUEST });
 
-    // const {
-    //   userLogin: { userInfo },
-    // } = getState();
+    const {
+      userLogin: { userInfo },
+    } = getState();
 
     const config = {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDQ2ZWIzZGI3MzFjZTQ1NjhkYzEyOCIsInVzZXJuYW1lIjoidGVzdG1hbiIsImlhdCI6MTY0ODcyODA4NCwiZXhwIjoxNjUxMzIwMDg0fQ.Xff3QAHItU45dWT70xsWAvzj1X951F9C8FQ98RRuow0`,
-        // Authorization: `Bearer ${userInfo.token}`,
+        Authorization: `Bearer ${userInfo.token}`,
       },
     };
     const { data } = await axios.post(
@@ -83,15 +81,15 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
 export const createProduct = (product) => async (dispatch, getState) => {
   try {
     dispatch({ type: PRODUCT_CREATE_REQUEST });
-    // const {
-    //   userLogin: { userInfo },
-    // } = getState();
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
 
     const config = {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDQ2ZWIzZGI3MzFjZTQ1NjhkYzEyOCIsInVzZXJuYW1lIjoidGVzdG1hbiIsImlhdCI6MTY0ODcyODA4NCwiZXhwIjoxNjUxMzIwMDg0fQ.Xff3QAHItU45dWT70xsWAvzj1X951F9C8FQ98RRuow0`,
-        // Authorization: `Bearer ${userInfo.token}`,
+        Authorization: `Bearer ${userInfo.token}`,
       },
     };
     const { data } = await axios.post(
@@ -112,18 +110,17 @@ export const createProduct = (product) => async (dispatch, getState) => {
   }
 };
 
-export const editProduct = (slug) => async (dispatch) => {
+export const editProduct = (slug) => async (dispatch, getState) => {
   try {
     dispatch({ type: PRODUCT_EDIT_REQUEST });
-    // const {
-    //   userLogin: { userInfo },
-    // } = getState();
+    const {
+      userLogin: { userInfo },
+    } = getState();
 
     const config = {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDQ2ZWIzZGI3MzFjZTQ1NjhkYzEyOCIsInVzZXJuYW1lIjoidGVzdG1hbiIsImlhdCI6MTY0ODcyODA4NCwiZXhwIjoxNjUxMzIwMDg0fQ.Xff3QAHItU45dWT70xsWAvzj1X951F9C8FQ98RRuow0`,
-        // Authorization: `Bearer ${userInfo.token}`,
+        Authorization: `Bearer ${userInfo.token}`,
       },
     };
     const { data } = await axios.get(
@@ -147,15 +144,14 @@ export const updateProduct = (slug, product) => async (dispatch, getState) => {
   try {
     dispatch({ type: PRODUCT_UPDATE_REQUEST });
 
-    // const {
-    //   userLogin: { userInfo },
-    // } = getState();
+    const {
+      userLogin: { userInfo },
+    } = getState();
 
     const config = {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNDQ2ZWIzZGI3MzFjZTQ1NjhkYzEyOCIsInVzZXJuYW1lIjoidGVzdG1hbiIsImlhdCI6MTY0ODcyODA4NCwiZXhwIjoxNjUxMzIwMDg0fQ.Xff3QAHItU45dWT70xsWAvzj1X951F9C8FQ98RRuow0`,
-        // Authorization: `Bearer ${userInfo.token}`,
+        Authorization: `Bearer ${userInfo.token}`,
       },
     };
     const { data } = await axios.put(

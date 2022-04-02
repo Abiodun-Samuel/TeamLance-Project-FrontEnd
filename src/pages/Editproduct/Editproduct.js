@@ -9,12 +9,15 @@ import {
   PRODUCT_EDIT_RESET,
   PRODUCT_UPDATE_RESET,
 } from "../../redux/constants/productConstants";
+import axios from "axios";
 
 const Editproduct = () => {
   const navigate = useNavigate();
   const { slug } = useParams();
   const dispatch = useDispatch();
-  const { loading, error, product } = useSelector((state) => state.productEdit);
+  const [loading, setLoading] = useState(false);
+  // const { loading, error, product } = useSelector((state) => state.productEdit);
+  const { userInfo } = useSelector((state) => state.userLogin);
   const {
     loading: loadingUpdate,
     success: successUpdate,
@@ -32,25 +35,56 @@ const Editproduct = () => {
     dispatch(
       updateProduct(slug, { name, price, category, category_id, status })
     );
+    toastMessage("success", "Product has been edited successfully");
+    setName("");
+    setPrice(0);
+    // navigate("/products");
   };
 
   React.useEffect(() => {
-    if (!product?.name) {
-      dispatch(editProduct(slug));
-    } else {
-      setName(product.name);
-      setPrice(product.price);
-    }
-    if (successUpdate) {
-      toastMessage("success", "Product has been edited successfully");
-      setName("");
-      setPrice(0);
-      navigate("/products");
-    }
-    return () => {
-      dispatch({ type: PRODUCT_UPDATE_RESET });
+    const fetchData = async (slug) => {
+      setLoading(true);
+      try {
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${userInfo.token}`,
+          },
+        };
+        const { data } = await axios.get(
+          `${process.env.REACT_APP_API_URL}/api/product/${slug}`,
+          config
+        );
+        setName(data.name);
+        setPrice(data.price);
+        setCategory(data.category);
+        setCategoryId(data.category_id);
+        setStatus(data.status);
+        setLoading(false);
+      } catch (error) {
+        console.log(error);
+      }
     };
-  }, [slug, dispatch, product?.name, product?.price, successUpdate, navigate]);
+    fetchData(slug);
+  }, [slug, userInfo.token]);
+
+  // React.useEffect(() => {
+  //   if (!product?.name) {
+  //     dispatch(editProduct(slug));
+  //   } else {
+  //     setName(product.name);
+  //     setPrice(product.price);
+  //   }
+  //   if (successUpdate) {
+  //     toastMessage("success", "Product has been edited successfully");
+  //     setName("");
+  //     setPrice(0);
+  //     navigate("/products");
+  //   }
+  //   return () => {
+  //     dispatch({ type: PRODUCT_UPDATE_RESET });
+  //   };
+  // }, [slug, dispatch, product?.name, product?.price, successUpdate, navigate]);
 
   return (
     <>
@@ -58,7 +92,7 @@ const Editproduct = () => {
       <div className="container">
         <div className="row d-flex justify-content-center mt-5">
           <div className="col-lg-6 my-2">
-            {error && <Message type="danger" message={error} />}
+            {/* {error && <Message type="danger" message={error} />} */}
             {errorUpdate && <Message type="danger" message={errorUpdate} />}
 
             <h4 className="text-primary font-weight-bold">Edit Product</h4>
