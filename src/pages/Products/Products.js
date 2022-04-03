@@ -10,14 +10,11 @@ const Products = () => {
   const { products, loading, error } = useSelector(
     (state) => state.productList
   );
-  const { userInfo } = useSelector((state) => state.userLogin);
+  // const { userInfo } = useSelector((state) => state.userLogin);
 
   useEffect(() => {
-    if (!userInfo) {
-      navigate("/login");
-    }
     dispatch(getProducts());
-  }, [dispatch, navigate, userInfo]);
+  }, [dispatch]);
 
   return (
     <>

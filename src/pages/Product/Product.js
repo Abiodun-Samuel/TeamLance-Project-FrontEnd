@@ -19,9 +19,8 @@ const Product = ({ loading, error, products }) => {
   } = useSelector((state) => state.productDelete);
 
   const columns = useMemo(() => COLUMNS, []);
-  const data = products;
-  console.log(products);
-  // const data = useMemo(() => products, [products]);
+  const data = useMemo(() => products, [products]);
+
   const {
     getTableProps,
     getTableBodyProps,
