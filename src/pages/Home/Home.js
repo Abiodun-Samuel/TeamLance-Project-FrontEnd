@@ -6,7 +6,7 @@ const Home = () => {
   const navigate = useNavigate();
   const { userInfo } = useSelector((state) => state.userLogin);
   React.useEffect(() => {
-    if (userInfo) {
+    if (!userInfo) {
       navigate("/login");
     } else {
       navigate("/products");
